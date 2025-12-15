@@ -1,0 +1,32 @@
+{
+  "name": "webpify",
+  "version": "0.0.1",
+  "description": "Convert images to WebP format",
+  "type": "module",
+  "private": true,
+  "main": "dist/webpify.js",
+  "bin": {
+    "webpify": "./dist/webpify.js"
+  },
+  "scripts": {
+    "start": "npx tsx webpify.ts",
+    "build": "npx tsx build.ts",
+    "build:install": "npx tsx build.ts --install"
+  },
+  "keywords": [
+    "webp",
+    "image",
+    "converter"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.2",
+    "esbuild": "^0.27.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
