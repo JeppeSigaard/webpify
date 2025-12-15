@@ -15,6 +15,7 @@ import {
   chmodSync,
   existsSync,
   writeFileSync,
+  readFileSync,
 } from "fs";
 import { join } from "path";
 
@@ -22,6 +23,9 @@ const ENTRY_FILE = "webpify.ts";
 const OUTPUT_NAME = "webpify";
 const INSTALL_DIR = join(process.env.HOME!, ".local", "bin");
 const LIB_DIR = join(process.env.HOME!, ".local", "lib", "webpify");
+
+// Read version from package.json
+const pkg = JSON.parse(readFileSync("package.json", "utf-8"));
 
 async function build() {
   const args = process.argv.slice(2);
@@ -54,12 +58,13 @@ async function build() {
         join(LIB_DIR, `${OUTPUT_NAME}.js`)
       );
 
-      // Create package.json for dependencies
+      // Create package.json for dependencies (includes version for --version flag)
       writeFileSync(
         join(LIB_DIR, "package.json"),
         JSON.stringify(
           {
             name: "webpify",
+            version: pkg.version,
             type: "module",
             dependencies: { sharp: "^0.34.0" },
           },

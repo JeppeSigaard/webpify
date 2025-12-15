@@ -5,7 +5,11 @@
 import sharp from "sharp";
 import { parseArgs } from "util";
 import { basename, dirname, extname, join } from "path";
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(readFileSync(join(__dirname, "package.json"), "utf-8"));
 
 interface Options {
   quality: number;
@@ -49,7 +53,7 @@ function parseCliArgs(): { inputFile: string; options: Options } | null {
   }
 
   if (values.version) {
-    console.log("webpify v0.1.0");
+    console.log(`webpify v${pkg.version}`);
     process.exit(0);
   }
 

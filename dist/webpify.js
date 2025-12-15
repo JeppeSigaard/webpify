@@ -4,7 +4,10 @@
 import sharp from "sharp";
 import { parseArgs } from "util";
 import { basename, dirname, extname, join } from "path";
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
+import { fileURLToPath } from "url";
+var __dirname = dirname(fileURLToPath(import.meta.url));
+var pkg = JSON.parse(readFileSync(join(__dirname, "package.json"), "utf-8"));
 function printHelp() {
   console.log(`
 webpify - Convert images to WebP format
@@ -39,7 +42,7 @@ function parseCliArgs() {
     process.exit(0);
   }
   if (values.version) {
-    console.log("webpify v0.1.0");
+    console.log(`webpify v${pkg.version}`);
     process.exit(0);
   }
   if (positionals.length === 0) {
