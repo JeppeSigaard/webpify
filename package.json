@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Convert images to WebP format",
   "type": "module",
-  "private": true,
   "main": "dist/webpify.js",
   "bin": {
     "webpify": "./dist/webpify.js"
